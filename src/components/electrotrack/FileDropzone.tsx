@@ -1,14 +1,15 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ImagePlus, X } from "lucide-react";
 
 const MAX = 5 * 1024 * 1024;
 const TYPES = ["image/jpeg", "image/png"];
 
-export function FileDropzone({ label }: { label: string }) {
+export function FileDropzone({ label, onChange }: { label: string; onChange?: (n: number) => void }) {
   const ref = useRef<HTMLInputElement>(null);
   const [files, setFiles] = useState<File[]>([]);
   const [error, setError] = useState("");
   const [drag, setDrag] = useState(false);
+  useEffect(() => { onChange?.(files.length); }, [files.length]);
 
   const add = (list: FileList | null) => {
     if (!list) return;
