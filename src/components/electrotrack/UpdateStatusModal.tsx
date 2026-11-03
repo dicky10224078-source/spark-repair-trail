@@ -12,7 +12,7 @@ const STATUSES = [
 ];
 
 export function UpdateStatusModal({ open, onClose, ticket, unit }: { open: boolean; onClose: () => void; ticket: string; unit: string }) {
-  const [status, setStatus] = useState(STATUSES[1].v);
+  const [status, setStatus] = useState("Dalam Perbaikan");
   const [notify, setNotify] = useState(true);
 
   useEffect(() => {
